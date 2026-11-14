@@ -7,6 +7,10 @@ data.
 
 Built with React, TypeScript, Vite, Tailwind CSS 4 and three.js. This is a personal project, shared as it is.
 
+**Try it live: https://saifcs50-cs50.github.io/life-hud/** (your data stays in your own browser).
+
+![Life H.U.D dashboard](screenshot.png)
+
 ## What it does
 
 - **Dashboard**: today's log in one place.
@@ -56,6 +60,8 @@ npm run preview   # serve the built app
 npm run lint      # Oxlint
 ```
 
+The live demo is the same build with GitHub Pages' sub-path: `npx vite build --base=/life-hud/` plus a copy of `index.html` as `404.html` so page links work.
+
 ## Your data
 
 Everything is stored in your browser's IndexedDB (database `life-hud`) and `localStorage` (theme and Eco Mode only).
@@ -72,7 +78,6 @@ The only request the page makes to the outside is for the two fonts from Google 
   in the app. The Trackers page covers extra activities.
 - The production bundle is a single large JavaScript file (about 1.8 MB, 520 kB gzipped) because there is no code
   splitting yet.
-- There is no screenshot in this repository yet.
 - `npm audit` reports high-severity advisories in build-time tooling (nanoid, source-map-js, Vite's dev server); they
   are not in code that ships to the browser, and the lockfile has not been updated for them.
 
