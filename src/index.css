@@ -1,0 +1,376 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Rajdhani", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+
+  /* carbon base */
+  --color-carbon-950: #05070a;
+  --color-carbon-900: #0a0d13;
+  --color-carbon-800: #10141c;
+  --color-carbon-700: #181d28;
+  --color-carbon-600: #232937;
+  --color-carbon-500: #313a4c;
+
+  /* ink text */
+  --color-ink-100: #eef1f8;
+  --color-ink-300: #c2c8da;
+  --color-ink-500: #8b93aa;
+  --color-ink-700: #545c72;
+
+  /* telemetry cyan - primary accent */
+  --color-telemetry-300: #8fefff;
+  --color-telemetry-400: #67e8f9;
+  --color-telemetry-500: #22d3ee;
+  --color-telemetry-600: #0ea5c7;
+
+  /* throttle red - danger / thermal / rival */
+  --color-throttle-400: #ff5470;
+  --color-throttle-500: #ff2b4d;
+  --color-throttle-600: #e01238;
+
+  /* amber - warnings / DRS / qualifying */
+  --color-amber-400: #ffc94d;
+  --color-amber-500: #ffb020;
+  --color-amber-600: #e6920a;
+
+  /* streak green - success / combo */
+  --color-streak-400: #5cf2b0;
+  --color-streak-500: #34e8a0;
+  --color-streak-600: #1ec984;
+}
+
+/*
+ * Light mode overrides the same token names Tailwind generates utilities
+ * from (bg-carbon-950, text-ink-500, text-telemetry-400, ...) — every
+ * component that already uses these classes re-themes for free. Accent
+ * colors are shifted darker/more saturated here since the dark-mode neon
+ * shades (tuned for a black backdrop) are too low-contrast as text on a
+ * light background.
+ */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-carbon-950: #eef1f6;
+  --color-carbon-900: #f8fafc;
+  --color-carbon-800: #e7ebf2;
+  --color-carbon-700: #d7dce6;
+  --color-carbon-600: #c2c9d6;
+  --color-carbon-500: #a6aec2;
+
+  --color-ink-100: #12151d;
+  --color-ink-300: #363c4c;
+  --color-ink-500: #5b6478;
+  --color-ink-700: #949cb0;
+
+  --color-telemetry-300: #0c7f99;
+  --color-telemetry-400: #0891b2;
+  --color-telemetry-500: #0ea5c7;
+  --color-telemetry-600: #0b7a94;
+
+  --color-throttle-400: #e11d48;
+  --color-throttle-500: #dc2626;
+  --color-throttle-600: #b91c1c;
+
+  --color-amber-400: #b45309;
+  --color-amber-500: #d97706;
+  --color-amber-600: #92400e;
+
+  --color-streak-400: #0d9488;
+  --color-streak-500: #059669;
+  --color-streak-600: #047857;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-carbon-950);
+    color: var(--color-ink-100);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: var(--color-telemetry-500);
+    color: var(--color-carbon-950);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-carbon-600);
+    border-radius: 999px;
+    border: 2px solid var(--color-carbon-950);
+  }
+
+  /* Native number-input spin buttons overlap our unit suffix label
+     (e.g. "hrs") — the suffix already conveys the unit, so drop them. */
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@utility font-tele {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility glass-panel {
+  background: linear-gradient(
+    160deg,
+    rgb(255 255 255 / 0.06),
+    rgb(255 255 255 / 0.015)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.2),
+    0 12px 32px -8px rgb(0 0 0 / 0.5);
+}
+
+/* Non-blurred card variant for panels hosting a Viewport3D — backdrop-filter
+   would smear the WebGL content behind it, so this uses a flat tinted
+   background instead. */
+@utility solid-panel {
+  background-color: rgb(255 255 255 / 0.03);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.2),
+    0 12px 32px -8px rgb(0 0 0 / 0.5);
+}
+
+@utility glow-telemetry {
+  box-shadow:
+    0 0 1px rgb(34 211 238 / 0.8),
+    0 0 24px rgb(34 211 238 / 0.18);
+}
+
+@utility glow-throttle {
+  box-shadow:
+    0 0 1px rgb(255 43 77 / 0.8),
+    0 0 24px rgb(255 43 77 / 0.22);
+}
+
+@utility glow-streak {
+  box-shadow:
+    0 0 1px rgb(52 232 160 / 0.8),
+    0 0 24px rgb(52 232 160 / 0.18);
+}
+
+@utility glow-amber {
+  box-shadow:
+    0 0 1px rgb(255 176 32 / 0.8),
+    0 0 24px rgb(255 176 32 / 0.2);
+}
+
+@utility ambient-bg {
+  background:
+    radial-gradient(
+      ellipse 900px 500px at 15% -10%,
+      rgb(34 211 238 / 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 700px 500px at 100% 0%,
+      rgb(255 43 77 / 0.06),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 1000px 700px at 50% 120%,
+      rgb(52 232 160 / 0.05),
+      transparent 60%
+    ),
+    var(--color-carbon-950);
+}
+
+@utility weather-clear {
+  background:
+    radial-gradient(
+      ellipse 1100px 650px at 20% -10%,
+      rgb(34 211 238 / 0.16),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 900px 600px at 100% 0%,
+      rgb(52 232 160 / 0.14),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 1200px 800px at 50% 120%,
+      rgb(52 232 160 / 0.1),
+      transparent 62%
+    ),
+    var(--color-carbon-950);
+}
+
+@utility weather-stormy {
+  background:
+    radial-gradient(
+      ellipse 900px 500px at 15% -10%,
+      rgb(84 92 114 / 0.12),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 900px 600px at 100% 10%,
+      rgb(30 36 48 / 0.5),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 1100px 700px at 50% 120%,
+      rgb(10 14 20 / 0.6),
+      transparent 65%
+    ),
+    #050608;
+}
+
+@utility weather-thermal {
+  background:
+    radial-gradient(
+      ellipse 1000px 600px at 50% 0%,
+      rgb(255 43 77 / 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 800px 500px at 100% 40%,
+      rgb(255 82 112 / 0.14),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 1100px 700px at 50% 120%,
+      rgb(255 43 77 / 0.1),
+      transparent 62%
+    ),
+    var(--color-carbon-950);
+  animation: thermal-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes thermal-pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.15);
+  }
+}
+
+@utility checkered-flag {
+  background-image: repeating-conic-gradient(
+    #0a0d13 0% 25%,
+    #eef1f8 0% 50%
+  );
+  background-size: 32px 32px;
+  animation: flag-wave 6s linear infinite;
+}
+
+@keyframes flag-wave {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 64px 0;
+  }
+}
+
+/*
+ * Component-level light-mode overrides. These utilities blend a literal
+ * white/black tint into their own gradients rather than referencing the
+ * carbon/ink tokens directly, so they need explicit light variants —
+ * everything else re-themes automatically via the token overrides above.
+ */
+:root[data-theme="light"] {
+  .glass-panel {
+    background: linear-gradient(
+      160deg,
+      rgb(15 23 42 / 0.035),
+      rgb(15 23 42 / 0.012)
+    );
+    border-color: rgb(15 23 42 / 0.08);
+    box-shadow:
+      0 1px 2px rgb(15 23 42 / 0.05),
+      0 12px 32px -8px rgb(15 23 42 / 0.12);
+  }
+
+  .solid-panel {
+    background-color: rgb(255 255 255 / 0.85);
+    border-color: rgb(15 23 42 / 0.08);
+    box-shadow:
+      0 1px 2px rgb(15 23 42 / 0.05),
+      0 12px 32px -8px rgb(15 23 42 / 0.12);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-color: var(--color-carbon-950);
+  }
+
+  /*
+   * Every input/button/pill across the app tints its surface with
+   * bg-white/X and border-white/X for subtle depth on the dark theme —
+   * rather than editing every component, retarget those exact utility
+   * classes to a dark tint here. Unlayered rules win over Tailwind's
+   * layered utilities regardless of specificity, so no !important needed.
+   */
+  .bg-white\/10 {
+    background-color: rgb(15 23 42 / 0.12);
+  }
+  .bg-white\/5 {
+    background-color: rgb(15 23 42 / 0.07);
+  }
+  .bg-white\/\[0\.02\] {
+    background-color: rgb(15 23 42 / 0.04);
+  }
+  .bg-white\/\[0\.04\] {
+    background-color: rgb(15 23 42 / 0.06);
+  }
+  .bg-white\/\[0\.05\] {
+    background-color: rgb(15 23 42 / 0.07);
+  }
+  .bg-white\/\[0\.06\] {
+    background-color: rgb(15 23 42 / 0.08);
+  }
+  .border-white\/10 {
+    border-color: rgb(15 23 42 / 0.14);
+  }
+  .border-white\/5 {
+    border-color: rgb(15 23 42 / 0.1);
+  }
+  .ring-white\/10 {
+    --tw-ring-color: rgb(15 23 42 / 0.14);
+  }
+  .hover\:bg-white\/10:hover {
+    background-color: rgb(15 23 42 / 0.12);
+  }
+  .hover\:bg-white\/5:hover {
+    background-color: rgb(15 23 42 / 0.07);
+  }
+  .hover\:bg-white\/\[0\.04\]:hover {
+    background-color: rgb(15 23 42 / 0.06);
+  }
+  .hover\:bg-white\/\[0\.05\]:hover {
+    background-color: rgb(15 23 42 / 0.07);
+  }
+  .hover\:bg-white\/\[0\.06\]:hover {
+    background-color: rgb(15 23 42 / 0.08);
+  }
+}
