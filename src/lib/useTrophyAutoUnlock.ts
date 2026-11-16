@@ -25,7 +25,7 @@ const MILESTONES: Milestone[] = [
   },
   {
     title: "Slipstream Unlocked",
-    description: "3 consecutive productive days — 1.5x XP drafting active.",
+    description: "3 consecutive productive days. 1.5x XP drafting active.",
     icon: "wind",
     condition: (t) => t.slipstream,
   },
@@ -96,7 +96,7 @@ export function useTrophyAutoUnlock() {
       if (already) return;
       await db.trophies.add({
         title: "Boss Slain",
-        description: "Defeated your first Boss Fight — exam prep goal fully logged.",
+        description: "Defeated your first Boss Fight: exam prep goal fully logged.",
         icon: "swords",
         unlockedAt: Date.now(),
       });

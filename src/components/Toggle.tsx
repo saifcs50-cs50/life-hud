@@ -19,7 +19,7 @@ export function Toggle({ label, checked, onChange }: ToggleProps) {
       <span
         className={clsx(
           "relative h-6 w-11 shrink-0 rounded-full transition-colors",
-          checked ? "bg-streak-500/80 glow-streak" : "bg-carbon-600",
+          checked ? "bg-streak-500/80" : "bg-carbon-600",
         )}
       >
         <span

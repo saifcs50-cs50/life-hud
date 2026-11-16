@@ -81,7 +81,7 @@ export function isValidExportBundle(data: unknown): data is ExportBundle {
   return BUNDLE_KEYS.every((key) => Array.isArray(record[key]));
 }
 
-/** Wipes every table — used for a full factory reset before real use begins. */
+/** Wipes every table. Used for a full factory reset before real use begins. */
 export async function resetAllData() {
   await db.transaction(
     "rw",

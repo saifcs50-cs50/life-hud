@@ -91,9 +91,7 @@ export function TodaySplitChart() {
           </div>
         </div>
       ) : (
-        <p className="font-tele text-xs text-ink-700">
-          No hours logged today.
-        </p>
+        <p className="text-sm text-ink-500">No hours logged today.</p>
       )}
     </GlassCard>
   );

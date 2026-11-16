@@ -69,10 +69,7 @@ export function RaceControl() {
   const aheadOfRival = todayHours - rival;
 
   return (
-    <GlassCard
-      glow={blackFlag ? "throttle" : slipstream ? "streak" : "telemetry"}
-      className="p-6"
-    >
+    <GlassCard className="p-6">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-lg font-semibold text-ink-100">Race Control</h2>
         <div className="flex flex-wrap items-center gap-2">
@@ -83,12 +80,11 @@ export function RaceControl() {
           )}
           {blackFlag && (
             <span className="glow-throttle flex items-center gap-1.5 rounded-full border border-throttle-500/40 bg-throttle-500/10 px-3 py-1 text-xs font-medium text-throttle-300">
-              <Flag className="h-3.5 w-3.5" /> Black Flag — Rival boosted
+              <Flag className="h-3.5 w-3.5" /> Black flag: rival boosted
             </span>
           )}
           <motion.button
             type="button"
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => update({ drsActive: !todayLog?.drsActive })}
             className={clsx(
@@ -117,7 +113,7 @@ export function RaceControl() {
           max={maxHours}
         />
         <RaceBar
-          label="AI Rival"
+          label="Rival"
           hours={rival}
           colorClass="bg-throttle-400"
           max={maxHours}

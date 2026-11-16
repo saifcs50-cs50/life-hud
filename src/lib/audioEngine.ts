@@ -1,5 +1,5 @@
 /**
- * Ambient loops are synthesized procedurally via Web Audio — no external
+ * Ambient loops are synthesized procedurally via Web Audio: no external
  * audio files, so no licensing/sourcing concerns and nothing to download.
  */
 export type AmbientTrack = "garage" | "rain";

@@ -56,7 +56,7 @@ export function TireWear3D({ gripPct }: TireWear3DProps) {
       />
 
       <group ref={wheelRef}>
-        {/* Black rubber tread band — flat-ish faceted tube reads as tire, not a bagel */}
+        {/* Black rubber tread band. A flat-ish faceted tube reads as tire, not a bagel */}
         <mesh>
           <torusGeometry args={[TREAD_RADIUS, TREAD_TUBE, 8, 48]} />
           {isLight ? (
@@ -84,7 +84,7 @@ export function TireWear3D({ gripPct }: TireWear3DProps) {
           )}
         </mesh>
 
-        {/* Thin rim lip — where the alloy meets the tyre's inner edge */}
+        {/* Thin rim lip, where the alloy meets the tyre's inner edge */}
         <mesh>
           <ringGeometry args={[RIM_OUTER - 0.045, RIM_OUTER, 32]} />
           <meshStandardMaterial
@@ -95,7 +95,7 @@ export function TireWear3D({ gripPct }: TireWear3DProps) {
           />
         </mesh>
 
-        {/* Spokes — solid bars with open gaps between them, like an alloy wheel */}
+        {/* Spokes: solid bars with open gaps between them, like an alloy wheel */}
         {Array.from({ length: SPOKE_COUNT }).map((_, i) => (
           <group key={i} rotation={[0, 0, (i / SPOKE_COUNT) * Math.PI * 2]}>
             <mesh position={[0, (HUB_OUTER + RIM_OUTER) / 2, 0]}>

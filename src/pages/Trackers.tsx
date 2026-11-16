@@ -88,7 +88,7 @@ export function Trackers() {
                 className={clsx(
                   "flex-1 rounded-xl border px-3 py-2.5 text-xs font-medium transition-colors",
                   tag === "productive"
-                    ? "border-streak-500/40 bg-streak-500/10 text-streak-300 glow-streak"
+                    ? "border-streak-500/40 bg-streak-500/10 text-streak-300"
                     : "border-white/5 bg-white/[0.02] text-ink-500",
                 )}
               >
@@ -100,7 +100,7 @@ export function Trackers() {
                 className={clsx(
                   "flex-1 rounded-xl border px-3 py-2.5 text-xs font-medium transition-colors",
                   tag === "unproductive"
-                    ? "border-throttle-500/40 bg-throttle-500/10 text-throttle-300 glow-throttle"
+                    ? "border-throttle-500/40 bg-throttle-500/10 text-throttle-300"
                     : "border-white/5 bg-white/[0.02] text-ink-500",
                 )}
               >
@@ -172,7 +172,7 @@ export function Trackers() {
               </div>
             ))
           ) : (
-            <p className="font-tele text-xs text-ink-700">
+            <p className="text-sm text-ink-500">
               No custom activity logged today.
             </p>
           )}

@@ -8,7 +8,7 @@ interface Scene3DRootProps {
 
 /**
  * Single shared WebGL context for the whole app. Individual 3D cards render
- * into it via drei's <View className="..."> from anywhere in the DOM —
+ * into it via drei's <View className="..."> from anywhere in the DOM. This
  * avoids spinning up a separate canvas (and GPU context) per card.
  */
 export function Scene3DRoot({ eventSource }: Scene3DRootProps) {

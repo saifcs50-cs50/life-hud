@@ -23,7 +23,7 @@ export function Layout() {
   }, [hydrate]);
 
   // If the tab is left open past local midnight, roll over to the new day's
-  // log without needing a manual reload — dailyLogStore keys everything off
+  // log without needing a manual reload. dailyLogStore keys everything off
   // todayKey(), so re-hydrating just loads/creates the fresh day's row.
   useEffect(() => {
     const id = setInterval(() => {
@@ -44,7 +44,7 @@ export function Layout() {
     <div ref={rootRef} className="relative min-h-screen bg-carbon-950">
       <AtmosphereBackground />
       <Scene3DRoot eventSource={rootRef} />
-      <div className="relative z-10 flex min-h-screen gap-4 p-4">
+      <div className="relative z-10 flex min-h-screen flex-col gap-4 p-4 md:flex-row">
         <Sidebar />
         <div className="flex min-w-0 flex-1 flex-col gap-4">
           <TelemetryBar />

@@ -57,10 +57,7 @@ export function Dashboard() {
 
   if (status === "error") {
     return (
-      <GlassCard
-        glow="throttle"
-        className="flex h-64 items-center justify-center"
-      >
+      <GlassCard className="flex h-64 items-center justify-center">
         <p className="font-tele text-sm text-throttle-400">
           DATA LINK ERROR
         </p>
@@ -258,9 +255,6 @@ export function Dashboard() {
             <dd className="text-right text-ink-300">
               {new Date(log.updatedAt).toLocaleTimeString()}
             </dd>
-
-            <dt className="text-ink-700">Storage</dt>
-            <dd className="text-right text-streak-400">IndexedDB · Dexie</dd>
           </dl>
         </GlassCard>
       </div>

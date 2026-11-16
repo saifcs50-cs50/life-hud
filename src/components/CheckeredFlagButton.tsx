@@ -8,7 +8,7 @@ const RADIO_LINES = [
   "Box, box, box. Great work out there today.",
   "That's a strong lap. Bank it and reset for tomorrow.",
   "P1 in your own race today. Get some rest.",
-  "Good balance through the whole session — carry that forward.",
+  "Good balance through the whole session. Carry that forward.",
   "Solid stint. Cool the tires, we go again tomorrow.",
   "That's exactly the pace we needed today. Nice drive.",
 ];
@@ -32,7 +32,7 @@ export function CheckeredFlagButton() {
       <button
         type="button"
         onClick={openModal}
-        className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-xs font-medium text-ink-300 transition-colors hover:bg-white/[0.06]"
+        className="flex shrink-0 items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-xs font-medium whitespace-nowrap text-ink-300 transition-colors hover:bg-white/[0.06]"
       >
         <Flag className="h-3.5 w-3.5" />
         End Day
@@ -97,7 +97,7 @@ export function CheckeredFlagButton() {
                     </div>
                   </div>
 
-                  <p className="font-tele text-xs text-ink-700">
+                  <p className="text-sm text-ink-500">
                     See you at tomorrow&rsquo;s grid walk. Rest well.
                   </p>
                 </div>

@@ -31,15 +31,15 @@ export function Sidebar() {
   const toggleTheme = useUiStore((s) => s.toggleTheme);
 
   return (
-    <aside className="glass-panel flex h-full w-60 shrink-0 flex-col rounded-2xl p-4">
-      <div className="mb-8 flex items-center gap-2 px-2 pt-2">
+    <aside className="glass-panel flex shrink-0 flex-wrap items-center gap-x-2 gap-y-3 rounded-lg p-3 md:sticky md:top-4 md:h-[calc(100dvh-2rem)] md:w-60 md:flex-col md:flex-nowrap md:items-stretch md:gap-0 md:overflow-y-auto md:p-4">
+      <div className="mr-auto flex items-center gap-2 px-1 md:mr-0 md:mb-8 md:px-2 md:pt-2">
         <Gauge className="h-6 w-6 text-telemetry-400" strokeWidth={2.25} />
         <span className="font-tele text-sm font-semibold tracking-[0.2em] text-ink-100">
           LIFE H.U.D
         </span>
       </div>
 
-      <nav className="flex flex-1 flex-col gap-1">
+      <nav className="order-last flex w-full gap-1 overflow-x-auto [scrollbar-width:none] md:order-none md:flex-1 md:flex-col md:overflow-visible">
         {NAV_ITEMS.map(({ to, label, icon: Icon, end }) => (
           <NavLink
             key={to}
@@ -47,9 +47,9 @@ export function Sidebar() {
             end={end}
             className={({ isActive }) =>
               clsx(
-                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all hover:scale-[1.02] active:scale-[0.97]",
+                "flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium whitespace-nowrap transition-all active:scale-[0.97] md:gap-3 md:py-2.5",
                 isActive
-                  ? "bg-telemetry-500/10 text-telemetry-300 glow-telemetry"
+                  ? "bg-telemetry-500/10 text-telemetry-300"
                   : "text-ink-500 hover:bg-white/5 hover:text-ink-100",
               )
             }
@@ -63,7 +63,7 @@ export function Sidebar() {
       <button
         type="button"
         onClick={toggleTheme}
-        className="mb-2 flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 text-xs font-medium text-ink-500 transition-colors hover:bg-white/[0.05]"
+        className="flex items-center justify-between gap-2 rounded-xl border border-white/5 bg-white/[0.02] px-2.5 py-1.5 text-xs font-medium text-ink-500 transition-colors hover:bg-white/[0.05] md:mb-2 md:px-3 md:py-2.5"
       >
         <span className="flex items-center gap-2">
           {theme === "dark" ? (
@@ -71,14 +71,14 @@ export function Sidebar() {
           ) : (
             <Sun className="h-3.5 w-3.5 text-amber-400" />
           )}
-          Theme
+          <span className="sr-only md:not-sr-only">Theme</span>
         </span>
         <span className="font-tele text-[10px] tracking-wide">
           {theme === "dark" ? "DARK" : "LIGHT"}
         </span>
       </button>
 
-      <div className="mb-2">
+      <div className="hidden md:mb-2 md:block">
         <AudioControl />
       </div>
 
@@ -86,24 +86,20 @@ export function Sidebar() {
         type="button"
         onClick={toggleEcoMode}
         className={clsx(
-          "mb-2 flex items-center justify-between rounded-xl border px-3 py-2.5 text-xs font-medium transition-colors",
+          "flex items-center justify-between gap-2 rounded-xl border px-2.5 py-1.5 text-xs font-medium transition-colors md:px-3 md:py-2.5",
           ecoMode
-            ? "border-streak-500/40 bg-streak-500/10 text-streak-300 glow-streak"
+            ? "border-streak-500/40 bg-streak-500/10 text-streak-300"
             : "border-white/5 bg-white/[0.02] text-ink-500 hover:bg-white/[0.05]",
         )}
       >
         <span className="flex items-center gap-2">
           <Leaf className="h-3.5 w-3.5" />
-          Eco Mode
+          <span className="sr-only md:not-sr-only">Eco Mode</span>
         </span>
         <span className="font-tele text-[10px] tracking-wide">
           {ecoMode ? "ON" : "OFF"}
         </span>
       </button>
-
-      <div className="rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 font-tele text-[11px] tracking-wide text-ink-700">
-        ALL SYSTEMS ONLINE
-      </div>
     </aside>
   );
 }

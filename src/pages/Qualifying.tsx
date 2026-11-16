@@ -55,10 +55,10 @@ export function Qualifying() {
           <Flag className="h-5 w-5 text-ink-500" />
           <div>
             <h2 className="text-lg font-semibold text-ink-100">
-              Qualifying — Week of {weekLabel}
+              Qualifying · week of {weekLabel}
             </h2>
-            <p className="font-tele text-xs text-ink-700">
-              SET YOUR GRID FOR THE WEEK AHEAD
+            <p className="text-sm text-ink-500">
+              Set your grid for the week ahead.
             </p>
           </div>
         </div>
@@ -69,10 +69,7 @@ export function Qualifying() {
       </GlassCard>
 
       <GlassCard className="p-6">
-        <div className="mb-4 flex items-center gap-2">
-          <Plus className="h-4 w-4 text-ink-500" />
-          <h3 className="text-sm font-semibold text-ink-100">Set a Target</h3>
-        </div>
+        <h3 className="mb-4 text-sm font-semibold text-ink-100">Set a Target</h3>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-[2fr_1fr_auto]">
           <label className="flex flex-col gap-1.5">
             <span className="text-xs font-medium tracking-wide text-ink-500 uppercase">
@@ -82,7 +79,7 @@ export function Qualifying() {
               type="text"
               value={label}
               onChange={(e) => setLabel(e.target.value)}
-              placeholder="e.g. Study 20 hours"
+              placeholder="e.g. Physics revision"
               className="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm text-ink-100 outline-none focus:border-telemetry-500/50"
             />
           </label>
@@ -110,7 +107,7 @@ export function Qualifying() {
             <GlassCard key={t.id} className="flex items-center gap-3 p-4">
               <div className="flex-1">
                 <Toggle
-                  label={`${t.label} — ${t.targetHours}h`}
+                  label={`${t.label} · ${t.targetHours}h`}
                   checked={t.achieved}
                   onChange={(next) =>
                     t.id !== undefined && setAchieved(t.id, next)
@@ -131,9 +128,7 @@ export function Qualifying() {
       ) : (
         <GlassCard className="flex min-h-[20vh] flex-col items-center justify-center gap-3 p-6 text-center">
           <Flag className="h-8 w-8 text-ink-700" strokeWidth={1.5} />
-          <p className="font-tele text-xs tracking-wide text-ink-700">
-            NO TARGETS SET FOR THIS WEEK
-          </p>
+          <p className="text-sm text-ink-500">No targets set for this week.</p>
         </GlassCard>
       )}
     </div>

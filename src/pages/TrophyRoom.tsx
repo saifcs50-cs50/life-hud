@@ -36,7 +36,7 @@ export function TrophyRoom() {
       <StubPage
         icon={TrophyIcon}
         title="Trophy Room"
-        phase="NO MILESTONES UNLOCKED YET — KEEP RACING"
+        phase="No trophies yet."
       />
     );
   }

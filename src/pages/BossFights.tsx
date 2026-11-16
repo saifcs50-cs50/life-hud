@@ -41,10 +41,7 @@ function BossCard({ fight }: { fight: BossFight }) {
   };
 
   return (
-    <GlassCard
-      glow={defeated ? "streak" : hp < 30 ? "throttle" : "none"}
-      className="flex flex-col gap-3 p-6"
-    >
+    <GlassCard className="flex flex-col gap-3 p-6">
       <div className="flex items-start justify-between gap-2">
         <div>
           <h3 className="text-base font-semibold text-ink-100">
@@ -58,7 +55,7 @@ function BossCard({ fight }: { fight: BossFight }) {
         </div>
         <div className="flex items-center gap-2">
           {defeated && (
-            <span className="glow-streak flex items-center gap-1 rounded-full border border-streak-500/40 bg-streak-500/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-streak-300">
+            <span className="flex items-center gap-1 rounded-full border border-streak-500/40 bg-streak-500/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-streak-300">
               <Skull className="h-3 w-3" /> DEFEATED
             </span>
           )}
@@ -188,7 +185,7 @@ export function BossFights() {
             className="flex items-center justify-center gap-1.5 rounded-xl border border-telemetry-400/30 bg-telemetry-500/10 px-4 py-2.5 text-sm font-medium text-telemetry-300 transition-opacity hover:bg-telemetry-500/20 disabled:opacity-40 md:self-end"
           >
             <Plus className="h-4 w-4" />
-            Deploy
+            Add exam
           </button>
         </div>
       </GlassCard>
@@ -196,9 +193,7 @@ export function BossFights() {
       {sorted.length === 0 ? (
         <GlassCard className="flex min-h-[30vh] flex-col items-center justify-center gap-3 p-6 text-center">
           <Swords className="h-8 w-8 text-ink-700" strokeWidth={1.5} />
-          <p className="font-tele text-xs tracking-wide text-ink-700">
-            NO BOSSES ON THE CALENDAR — DEPLOY YOUR FIRST EXAM ABOVE
-          </p>
+          <p className="text-sm text-ink-500">No exams yet. Add one above.</p>
         </GlassCard>
       ) : (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">

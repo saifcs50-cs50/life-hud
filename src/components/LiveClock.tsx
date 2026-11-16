@@ -11,11 +11,8 @@ export function LiveClock() {
   const time = now.toLocaleTimeString("en-US", { hour12: true });
 
   return (
-    <div className="text-right">
-      <p className="font-tele text-[11px] tracking-[0.25em] text-ink-700">
-        LIVE
-      </p>
-      <p className="font-tele text-lg font-semibold text-ink-100">{time}</p>
-    </div>
+    <p className="font-tele text-lg font-semibold whitespace-nowrap text-ink-100">
+      {time}
+    </p>
   );
 }

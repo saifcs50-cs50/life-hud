@@ -30,7 +30,6 @@ export function TireWearCard() {
         <h2 className="text-lg font-semibold text-ink-100">Tire Wear</h2>
         <motion.button
           type="button"
-          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => update({ pitStops: pitStops + 1 })}
           className="flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-300 hover:bg-amber-500/20"

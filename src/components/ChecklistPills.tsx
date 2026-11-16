@@ -25,7 +25,7 @@ export function ChecklistPills({ items, values, onToggle }: ChecklistPillsProps)
             className={clsx(
               "flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
               active
-                ? "border-streak-500/40 bg-streak-500/10 text-streak-300 glow-streak"
+                ? "border-streak-500/40 bg-streak-500/10 text-streak-300"
                 : "border-white/5 bg-white/[0.02] text-ink-500 hover:bg-white/[0.05]",
             )}
           >

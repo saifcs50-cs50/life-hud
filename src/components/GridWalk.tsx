@@ -30,8 +30,8 @@ export function GridWalk() {
         <h2 className="text-lg font-semibold text-ink-100">Grid Walk</h2>
         <p className="font-tele text-xs text-ink-700">
           {allClear
-            ? "LIGHTS OUT — GO RACING"
-            : `${litCount} LIGHT${litCount === 1 ? "" : "S"} REMAINING`}
+            ? "Lights out. Go racing."
+            : `${litCount} light${litCount === 1 ? "" : "s"} remaining`}
         </p>
       </div>
       <div className="flex gap-2.5">

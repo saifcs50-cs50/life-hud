@@ -64,9 +64,7 @@ export function XPTrendChart() {
           </ResponsiveContainer>
         </div>
       ) : (
-        <p className="font-tele text-xs text-ink-700">
-          No XP earned yet this week.
-        </p>
+        <p className="text-sm text-ink-500">No XP earned yet this week.</p>
       )}
     </GlassCard>
   );

@@ -85,9 +85,7 @@ export function BrainDumpBoard() {
           ))}
         </div>
       ) : (
-        <p className="font-tele text-xs text-ink-700">
-          No notes yet — clear the mental cache.
-        </p>
+        <p className="text-sm text-ink-500">No notes yet.</p>
       )}
     </GlassCard>
   );

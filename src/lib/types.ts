@@ -12,7 +12,7 @@ export interface SkincareChecklist {
 }
 
 export interface DailyLog {
-  /** Primary key — one row per calendar day. */
+  /** Primary key: one row per calendar day. */
   date: DateKey;
 
   weight?: number;
@@ -42,7 +42,7 @@ export interface DailyLog {
   /** Today's designated 2x-XP power hour, active for the whole day. */
   drsActive?: boolean;
 
-  /** Pit Stop presses today — each recovers tire grip without touching logged hours. */
+  /** Pit Stop presses today. Each recovers tire grip without touching logged hours. */
   pitStops?: number;
 
   notes?: string;

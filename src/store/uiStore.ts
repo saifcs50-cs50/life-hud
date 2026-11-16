@@ -53,7 +53,7 @@ export const useUiStore = create<UiState>()(
     {
       name: "life-hud-ui",
       // Audio never auto-resumes on load (browsers block autoplay + we don't
-      // want stale UI implying sound is playing when it isn't) — only
+      // want stale UI implying sound is playing when it isn't), so only
       // persist Eco Mode and theme across sessions.
       partialize: (state) => ({ ecoMode: state.ecoMode, theme: state.theme }),
     },

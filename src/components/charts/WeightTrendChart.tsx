@@ -62,9 +62,7 @@ export function WeightTrendChart() {
           </ResponsiveContainer>
         </div>
       ) : (
-        <p className="font-tele text-xs text-ink-700">
-          No weight entries yet.
-        </p>
+        <p className="text-sm text-ink-500">No weight entries yet.</p>
       )}
     </GlassCard>
   );

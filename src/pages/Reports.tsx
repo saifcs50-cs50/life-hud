@@ -70,16 +70,16 @@ export function Reports() {
     window.location.reload();
   };
 
-  const blueprintLines: (string | undefined)[] = telemetry
+  const summaryLines: (string | undefined)[] = telemetry
     ? [
-        "LIFE H.U.D — MASTER BLUEPRINT",
+        "LIFE H.U.D SUMMARY",
         `Generated: ${new Date().toLocaleString()}`,
         "",
         `Mascot Stage: ${telemetry.mascot.stage.name} (${telemetry.totalXP} career XP)`,
-        `Combo Streak: ${telemetry.streak} day(s) — ×${telemetry.multiplier.toFixed(2)} multiplier`,
+        `Combo Streak: ${telemetry.streak} day(s), ×${telemetry.multiplier.toFixed(2)} multiplier`,
         `Today: ${telemetry.todayHours.toFixed(1)}h productive, ${telemetry.todayXP} XP earned`,
         `Past Self Best (7d): ${telemetry.pastBest.toFixed(1)}h`,
-        `AI Rival Target: ${telemetry.rival.toFixed(1)}h`,
+        `Rival Target: ${telemetry.rival.toFixed(1)}h`,
         telemetry.slipstream ? "Slipstream: ACTIVE (1.5x XP)" : undefined,
         telemetry.blackFlag ? "Black Flag: ACTIVE (rival boosted)" : undefined,
         telemetry.fastestLap
@@ -88,16 +88,16 @@ export function Reports() {
         `Trophies Unlocked: ${trophyCount}`,
       ]
     : [];
-  const blueprintText = blueprintLines.filter((l): l is string => l !== undefined).join("\n");
+  const summaryText = summaryLines.filter((l): l is string => l !== undefined).join("\n");
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(blueprintText);
+      await navigator.clipboard.writeText(summaryText);
       setCopyError(null);
       setCopyState(true);
       setTimeout(() => setCopyState(false), 1800);
     } catch {
-      setCopyError("Couldn't access the clipboard — copy the text manually instead.");
+      setCopyError("Couldn't access the clipboard. Copy the text manually instead.");
     }
   };
 
@@ -105,16 +105,14 @@ export function Reports() {
     <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
       <GlassCard className="flex flex-col gap-4 p-6">
         <div>
-          <h2 className="text-lg font-semibold text-ink-100">
-            Telemetric Teleport
-          </h2>
+          <h2 className="text-lg font-semibold text-ink-100">Backup</h2>
           <p className="mt-1 text-xs text-ink-500">
-            Export a full backup of every log, tracker, and trophy — or
+            Export a full backup of every log, tracker, and trophy, or
             restore from one.
           </p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={handleExport}
@@ -186,11 +184,9 @@ export function Reports() {
       <GlassCard className="flex flex-col gap-4 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-ink-100">
-              Master Blueprint
-            </h2>
+            <h2 className="text-lg font-semibold text-ink-100">Summary</h2>
             <p className="mt-1 text-xs text-ink-500">
-              A single-block summary — paste it anywhere.
+              One block of text you can paste anywhere.
             </p>
           </div>
           <button
@@ -209,7 +205,7 @@ export function Reports() {
         </div>
 
         <pre className="font-tele max-h-80 overflow-auto rounded-xl border border-white/5 bg-white/[0.02] p-4 text-xs whitespace-pre-wrap text-ink-300">
-          {blueprintText || "SPOOLING…"}
+          {summaryText || "SPOOLING…"}
         </pre>
 
         {copyError && (
@@ -220,14 +216,14 @@ export function Reports() {
         )}
       </GlassCard>
 
-      <GlassCard glow="throttle" className="flex flex-col gap-4 p-6 xl:col-span-2">
+      <GlassCard className="flex flex-col gap-4 p-6 xl:col-span-2">
         <div>
           <h2 className="text-lg font-semibold text-throttle-300">
             Danger Zone
           </h2>
           <p className="mt-1 text-xs text-ink-500">
             Wipes every daily log, tracker, boss fight, trophy, and
-            qualifying target — a full factory reset. Grab an Export Backup
+            qualifying target: a full factory reset. Grab an Export Backup
             above first if you want to keep anything.
           </p>
         </div>

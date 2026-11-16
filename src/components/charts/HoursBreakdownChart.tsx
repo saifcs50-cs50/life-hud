@@ -84,9 +84,7 @@ export function HoursBreakdownChart() {
           </ResponsiveContainer>
         </div>
       ) : (
-        <p className="font-tele text-xs text-ink-700">
-          No hours logged yet.
-        </p>
+        <p className="text-sm text-ink-500">No hours logged yet.</p>
       )}
     </GlassCard>
   );

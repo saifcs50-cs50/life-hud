@@ -26,7 +26,7 @@ export const MASCOT_STAGES = [
 export const TIRE_WEAR_THRESHOLD_HOURS = 6;
 export const TIRE_RECOVERY_PER_PITSTOP = 25;
 
-/** 0-100. Proxy for focus-block fatigue — no live session timer exists, so this derives from logged load. */
+/** 0-100. Proxy for focus-block fatigue. No live session timer exists, so this derives from logged load. */
 export function computeGripPct(log: DailyLog): number {
   const load = (log.studyHours ?? 0) + (log.afterHoursMinutes ?? 0) / 60;
   const rawWear = Math.min(100, (load / TIRE_WEAR_THRESHOLD_HOURS) * 100);
@@ -152,7 +152,7 @@ export function isSlipstreamActive(
   return true;
 }
 
-/** 3 consecutive missed-combo days ending yesterday (today excluded — still in progress). */
+/** 3 consecutive missed-combo days ending yesterday (today excluded, still in progress). */
 export function isBlackFlagActive(
   today: string,
   logsByDate: Map<string, DailyLog>,

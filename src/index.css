@@ -19,22 +19,29 @@
   --color-ink-700: #545c72;
 
   /* telemetry cyan - primary accent */
+  --color-telemetry-200: #bdf6ff;
   --color-telemetry-300: #8fefff;
   --color-telemetry-400: #67e8f9;
   --color-telemetry-500: #22d3ee;
   --color-telemetry-600: #0ea5c7;
 
   /* throttle red - danger / thermal / rival */
+  --color-throttle-200: #ffb3c0;
+  --color-throttle-300: #ff8599;
   --color-throttle-400: #ff5470;
   --color-throttle-500: #ff2b4d;
   --color-throttle-600: #e01238;
 
   /* amber - warnings / DRS / qualifying */
+  --color-amber-200: #ffe8b3;
+  --color-amber-300: #ffd980;
   --color-amber-400: #ffc94d;
   --color-amber-500: #ffb020;
   --color-amber-600: #e6920a;
 
   /* streak green - success / combo */
+  --color-streak-200: #bafae0;
+  --color-streak-300: #8cf6c8;
   --color-streak-400: #5cf2b0;
   --color-streak-500: #34e8a0;
   --color-streak-600: #1ec984;
@@ -42,11 +49,12 @@
 
 /*
  * Light mode overrides the same token names Tailwind generates utilities
- * from (bg-carbon-950, text-ink-500, text-telemetry-400, ...) — every
+ * from (bg-carbon-950, text-ink-500, text-telemetry-400, ...), so every
  * component that already uses these classes re-themes for free. Accent
  * colors are shifted darker/more saturated here since the dark-mode neon
  * shades (tuned for a black backdrop) are too low-contrast as text on a
- * light background.
+ * light background. The 200/300 text shades go darker than 400 here, the
+ * mirror of dark mode, so tinted pills and notes stay at 4.5:1 or better.
  */
 :root[data-theme="light"] {
   color-scheme: light;
@@ -63,19 +71,26 @@
   --color-ink-500: #5b6478;
   --color-ink-700: #949cb0;
 
+  --color-telemetry-200: #0a6a80;
   --color-telemetry-300: #0c7f99;
   --color-telemetry-400: #0891b2;
   --color-telemetry-500: #0ea5c7;
   --color-telemetry-600: #0b7a94;
 
+  --color-throttle-200: #9f1239;
+  --color-throttle-300: #be123c;
   --color-throttle-400: #e11d48;
   --color-throttle-500: #dc2626;
   --color-throttle-600: #b91c1c;
 
+  --color-amber-200: #7c2d12;
+  --color-amber-300: #92400e;
   --color-amber-400: #b45309;
   --color-amber-500: #d97706;
   --color-amber-600: #92400e;
 
+  --color-streak-200: #065f46;
+  --color-streak-300: #066b4f;
   --color-streak-400: #0d9488;
   --color-streak-500: #059669;
   --color-streak-600: #047857;
@@ -118,7 +133,7 @@
   }
 
   /* Native number-input spin buttons overlap our unit suffix label
-     (e.g. "hrs") — the suffix already conveys the unit, so drop them. */
+     (e.g. "hrs"). The suffix already conveys the unit, so drop them. */
   input[type="number"] {
     appearance: textfield;
     -moz-appearance: textfield;
@@ -136,36 +151,21 @@
 }
 
 @utility glass-panel {
-  background: linear-gradient(
-    160deg,
-    rgb(255 255 255 / 0.06),
-    rgb(255 255 255 / 0.015)
-  );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background-color: rgb(255 255 255 / 0.03);
   border: 1px solid rgb(255 255 255 / 0.08);
-  box-shadow:
-    0 1px 1px rgb(0 0 0 / 0.2),
-    0 12px 32px -8px rgb(0 0 0 / 0.5);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
 }
 
-/* Non-blurred card variant for panels hosting a Viewport3D — backdrop-filter
-   would smear the WebGL content behind it, so this uses a flat tinted
-   background instead. */
+/* Card variant for panels hosting a Viewport3D. Keep it free of
+   backdrop-filter, which would smear the WebGL content behind it. */
 @utility solid-panel {
   background-color: rgb(255 255 255 / 0.03);
-  border: 1px solid rgb(255 255 255 / 0.1);
-  box-shadow:
-    0 1px 1px rgb(0 0 0 / 0.2),
-    0 12px 32px -8px rgb(0 0 0 / 0.5);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);
 }
 
-@utility glow-telemetry {
-  box-shadow:
-    0 0 1px rgb(34 211 238 / 0.8),
-    0 0 24px rgb(34 211 238 / 0.18);
-}
-
+/* Glow is kept for live race state only: Grid Walk lights and the DRS,
+   Slipstream and Black Flag pills. */
 @utility glow-throttle {
   box-shadow:
     0 0 1px rgb(255 43 77 / 0.8),
@@ -185,23 +185,7 @@
 }
 
 @utility ambient-bg {
-  background:
-    radial-gradient(
-      ellipse 900px 500px at 15% -10%,
-      rgb(34 211 238 / 0.08),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 700px 500px at 100% 0%,
-      rgb(255 43 77 / 0.06),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 1000px 700px at 50% 120%,
-      rgb(52 232 160 / 0.05),
-      transparent 60%
-    ),
-    var(--color-carbon-950);
+  background: var(--color-carbon-950);
 }
 
 @utility weather-clear {
@@ -293,31 +277,30 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .weather-thermal,
+  .checkered-flag {
+    animation: none;
+  }
+}
+
 /*
- * Component-level light-mode overrides. These utilities blend a literal
- * white/black tint into their own gradients rather than referencing the
- * carbon/ink tokens directly, so they need explicit light variants —
- * everything else re-themes automatically via the token overrides above.
+ * Component-level light-mode overrides. These utilities use a literal
+ * white/black tint rather than the carbon/ink tokens, so they need explicit
+ * light variants. Everything else re-themes automatically via the token
+ * overrides above.
  */
 :root[data-theme="light"] {
   .glass-panel {
-    background: linear-gradient(
-      160deg,
-      rgb(15 23 42 / 0.035),
-      rgb(15 23 42 / 0.012)
-    );
+    background-color: rgb(15 23 42 / 0.025);
     border-color: rgb(15 23 42 / 0.08);
-    box-shadow:
-      0 1px 2px rgb(15 23 42 / 0.05),
-      0 12px 32px -8px rgb(15 23 42 / 0.12);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
   }
 
   .solid-panel {
     background-color: rgb(255 255 255 / 0.85);
     border-color: rgb(15 23 42 / 0.08);
-    box-shadow:
-      0 1px 2px rgb(15 23 42 / 0.05),
-      0 12px 32px -8px rgb(15 23 42 / 0.12);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
   }
 
   ::-webkit-scrollbar-thumb {
@@ -326,8 +309,8 @@
 
   /*
    * Every input/button/pill across the app tints its surface with
-   * bg-white/X and border-white/X for subtle depth on the dark theme —
-   * rather than editing every component, retarget those exact utility
+   * bg-white/X and border-white/X for subtle depth on the dark theme.
+   * Rather than editing every component, retarget those exact utility
    * classes to a dark tint here. Unlayered rules win over Tailwind's
    * layered utilities regardless of specificity, so no !important needed.
    */

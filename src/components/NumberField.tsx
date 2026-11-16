@@ -33,7 +33,7 @@ export function NumberField({
             onChange(e.target.value === "" ? undefined : Number(e.target.value))
           }
           placeholder="—"
-          className="font-tele w-full rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-ink-100 outline-none focus:border-telemetry-500/50 focus:glow-telemetry"
+          className="font-tele w-full rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-ink-100 outline-none focus:border-telemetry-500/50"
         />
         {suffix && (
           <span className="font-tele pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-xs text-ink-700">

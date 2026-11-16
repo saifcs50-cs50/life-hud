@@ -9,9 +9,9 @@ interface Viewport3DProps {
 }
 
 /**
- * Tracked window into the shared canvas — or the flat fallback under Eco Mode.
+ * Tracked window into the shared canvas, or the flat fallback under Eco Mode.
  * `View` (outside a Canvas) renders and tracks its own internal element, so
- * size/position must be passed as className/style directly to it — wrapping
+ * size/position must be passed as className/style directly to it. Wrapping
  * it in an extra sized div and passing that div as `track` does nothing,
  * since View ignores an externally-supplied track ref in this mode.
  */

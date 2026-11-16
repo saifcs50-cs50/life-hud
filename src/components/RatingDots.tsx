@@ -19,7 +19,7 @@ export function RatingDots({ value, onChange }: RatingDotsProps) {
           className={clsx(
             "h-7 w-7 rounded-full border transition-colors",
             value !== undefined && n <= value
-              ? "border-telemetry-400 bg-telemetry-500/70 glow-telemetry"
+              ? "border-telemetry-400 bg-telemetry-500/70"
               : "border-white/10 bg-white/[0.02] hover:bg-white/[0.06]",
           )}
         />
